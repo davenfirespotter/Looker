@@ -1,41 +1,37 @@
 - view: dailyactive
-  derived_table:
-    sql: |
-      SELECT
-        *
-      FROM [LookerPOC.DAUWAUMAU]
-        
+  sql_table_name: LookerPOC.DAUWAUMAU_Company
 
   fields:
   - measure: count
     type: count
     drill_fields: detail*
 
-  - dimension: reportdate
+  - dimension : Date
     type: string
     sql: ${TABLE}.reportdate
 
-  - dimension: company_id
-    type: int
-    sql: ${TABLE}.company_id
-
-  - dimension: dau
+  - dimension: DailyActiveUsers
     type: int
     sql: ${TABLE}.dau
 
-  - dimension: wau
+  - dimension: WeeklyActiveUsers
     type: int
     sql: ${TABLE}.wau
 
-  - dimension: mau
+  - dimension: MonthlyActiveUsers
     type: int
     sql: ${TABLE}.mau
+
+  - dimension: CompanyID
+    type: int
+  
+    sql: ${TABLE}.companyid
 
   sets:
     detail:
       - reportdate
-      - company_id
       - dau
       - wau
       - mau
+      - companyid
 
